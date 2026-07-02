@@ -1,0 +1,203 @@
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="15"> 
+        <title>FIDS - Panel de Información de Vuelos</title>
+        <style>
+            body { background-color: #000000; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 30px; overflow: hidden; }
+            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 5px solid #FFB300; padding-bottom: 15px; margin-bottom: 25px; }
+            .header h1 { margin: 0; color: #FFB300; font-size: 3rem; text-transform: uppercase; font-weight: 800; }
+            .clock { color: #FFFFFF; font-size: 2rem; font-weight: bold; }
+            table { width: 100%; border-collapse: collapse; font-size: 2.2rem; font-weight: bold; }
+            th { text-align: left; color: #8E8E93; border-bottom: 3px solid #2C2C2E; padding: 12px; font-size: 1.6rem; text-transform: uppercase; }
+            td { padding: 18px 12px; border-bottom: 1px solid #1C1C1E; }
+            .vuelo { color: #E5E5EA; } .destino { color: #FFCC00; } .hora { color: #34C759; } .sala { color: #00A2FF; }
+            .estatus-a-tiempo { color: #34C759; } .estatus-demorado { color: #FF3B30; }
+            .estatus-abordando { color: #FF9500; animation: parpadeoAlerta 1.2s infinite; }
+            .estatus-default { color: #FFFFFF; }
+            @keyframes parpadeoAlerta { 0% { opacity: 1; } 50% { opacity: 0.1; } 100% { opacity: 1; } }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Salidas / Departures</h1>
+            <div class="clock" id="liveClock">00:00</div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>VUELO</th>
+                    <th>DESTINO</th>
+                    <th>HORA</th>
+                    <th>SALA</th>
+                    <th>ESTATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <tr>
+                    <td class="vuelo">Villahermosa</td>
+                    <td class="destino">VOI636</td>
+                    <td class="hora">06:00:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Cancun</td>
+                    <td class="destino">VOI3553</td>
+                    <td class="hora">07:50:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Guadalajara</td>
+                    <td class="destino">VOI1399</td>
+                    <td class="hora">08:26:00</td>
+                    <td class="sala">B</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Guadalajara</td>
+                    <td class="destino">VIV3243</td>
+                    <td class="hora">08:35:00</td>
+                    <td class="sala">B</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Monterrey</td>
+                    <td class="destino">VIV4001</td>
+                    <td class="hora">08:50:00</td>
+                    <td class="sala">C</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Cancun</td>
+                    <td class="destino">VIV2025</td>
+                    <td class="hora">09:45:00</td>
+                    <td class="sala">C</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Huatulco</td>
+                    <td class="destino">VOI612</td>
+                    <td class="hora">09:55:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Los Angeles</td>
+                    <td class="destino">VOI1783</td>
+                    <td class="hora">11:18:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Cancun</td>
+                    <td class="destino">VOI3555</td>
+                    <td class="hora">11:30:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Houston</td>
+                    <td class="destino">UAL4277</td>
+                    <td class="hora">12:25:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">San Jose del Cabo</td>
+                    <td class="destino">VOI644</td>
+                    <td class="hora">13:25:00</td>
+                    <td class="sala">C</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Tijuana</td>
+                    <td class="destino">VOI3221</td>
+                    <td class="hora">13:34:00</td>
+                    <td class="sala">C</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Cancun</td>
+                    <td class="destino">VIV2027</td>
+                    <td class="hora">14:35:00</td>
+                    <td class="sala">C</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Tijuana</td>
+                    <td class="destino">VOI3223</td>
+                    <td class="hora">17:45:00</td>
+                    <td class="sala">B</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Guadalajara</td>
+                    <td class="destino">VOI1397</td>
+                    <td class="hora">20:18:00</td>
+                    <td class="sala">B</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Tijuana</td>
+                    <td class="destino">VIV5117</td>
+                    <td class="hora">21:25:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">Monterrey</td>
+                    <td class="destino">VIV4009</td>
+                    <td class="hora">23:00:00</td>
+                    <td class="sala">A</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">RON</td>
+                    <td class="destino">VOIRON</td>
+                    <td class="hora">RON</td>
+                    <td class="sala">B</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+                <tr>
+                    <td class="vuelo">RON</td>
+                    <td class="destino">VOIRON</td>
+                    <td class="hora">RON</td>
+                    <td class="sala">B</td>
+                    <td class="estatus estatus-a-tiempo">A tiempo</td>
+                </tr>
+        
+            </tbody>
+        </table>
+        <script>
+            function updateClock() {
+                const now = new Date();
+                document.getElementById('liveClock').textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+            }
+            setInterval(updateClock, 1000); updateClock();
+        </script>
+    </body>
+    </html>
+    
