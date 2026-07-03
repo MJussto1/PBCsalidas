@@ -1,203 +1,42 @@
-
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="15"> 
-        <title>FIDS - Panel de Información de Vuelos</title>
-        <style>
-            body { background-color: #000000; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 30px; overflow: hidden; }
-            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 5px solid #FFB300; padding-bottom: 15px; margin-bottom: 25px; }
-            .header h1 { margin: 0; color: #FFB300; font-size: 3rem; text-transform: uppercase; font-weight: 800; }
-            .clock { color: #FFFFFF; font-size: 2rem; font-weight: bold; }
-            table { width: 100%; border-collapse: collapse; font-size: 2.2rem; font-weight: bold; }
-            th { text-align: left; color: #8E8E93; border-bottom: 3px solid #2C2C2E; padding: 12px; font-size: 1.6rem; text-transform: uppercase; }
-            td { padding: 18px 12px; border-bottom: 1px solid #1C1C1E; }
-            .vuelo { color: #E5E5EA; } .destino { color: #FFCC00; } .hora { color: #34C759; } .sala { color: #00A2FF; }
-            .estatus-a-tiempo { color: #34C759; } .estatus-demorado { color: #FF3B30; }
-            .estatus-abordando { color: #FF9500; animation: parpadeoAlerta 1.2s infinite; }
-            .estatus-default { color: #FFFFFF; }
-            @keyframes parpadeoAlerta { 0% { opacity: 1; } 50% { opacity: 0.1; } 100% { opacity: 1; } }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <h1>Salidas / Departures</h1>
-            <div class="clock" id="liveClock">00:00</div>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>VUELO</th>
-                    <th>DESTINO</th>
-                    <th>HORA</th>
-                    <th>SALA</th>
-                    <th>ESTATUS</th>
-                </tr>
-            </thead>
-            <tbody>
-    
-                <tr>
-                    <td class="vuelo">Villahermosa</td>
-                    <td class="destino">VOI636</td>
-                    <td class="hora">06:00:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="30">
+    <title>FIDS - Panel de Vuelos</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #0c1017; color: #ffffff; margin: 0; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #1f293d; padding-bottom: 10px; margin-bottom: 20px; }
+        .logo { font-size: 24px; font-weight: bold; color: #38bdf8; }
+        .clock { font-size: 22px; font-weight: bold; color: #a1a1aa; }
+        .container { display: flex; gap: 20px; }
+        .panel { flex: 1; background: #161b22; border-radius: 8px; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        h2 { text-align: center; margin-top: 0; color: #f8fafc; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #30363d; padding-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
         
-                <tr>
-                    <td class="vuelo">Cancun</td>
-                    <td class="destino">VOI3553</td>
-                    <td class="hora">07:50:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
+        th { background-color: #21262d; color: #8b949e; padding: 10px; font-size: 14px; text-transform: uppercase; }
+        td { padding: 12px 10px; border-bottom: 1px solid #30363d; font-size: 16px; font-weight: 500; color: #ffffff; vertical-align: middle; }
         
-                <tr>
-                    <td class="vuelo">Guadalajara</td>
-                    <td class="destino">VOI1399</td>
-                    <td class="hora">08:26:00</td>
-                    <td class="sala">B</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
+        /* Primera columna (Origen/Destino) en AMARILLO */
+        td:first-child { color: #eab308; font-weight: bold; }
         
-                <tr>
-                    <td class="vuelo">Guadalajara</td>
-                    <td class="destino">VIV3243</td>
-                    <td class="hora">08:35:00</td>
-                    <td class="sala">B</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
+        /* Estilo para las imágenes de los logos */
+        .logo-aerolinea { max-height: 25px; width: auto; display: block; }
         
-                <tr>
-                    <td class="vuelo">Monterrey</td>
-                    <td class="destino">VIV4001</td>
-                    <td class="hora">08:50:00</td>
-                    <td class="sala">C</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Cancun</td>
-                    <td class="destino">VIV2025</td>
-                    <td class="hora">09:45:00</td>
-                    <td class="sala">C</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Huatulco</td>
-                    <td class="destino">VOI612</td>
-                    <td class="hora">09:55:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Los Angeles</td>
-                    <td class="destino">VOI1783</td>
-                    <td class="hora">11:18:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Cancun</td>
-                    <td class="destino">VOI3555</td>
-                    <td class="hora">11:30:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Houston</td>
-                    <td class="destino">UAL4277</td>
-                    <td class="hora">12:25:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">San Jose del Cabo</td>
-                    <td class="destino">VOI644</td>
-                    <td class="hora">13:25:00</td>
-                    <td class="sala">C</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Tijuana</td>
-                    <td class="destino">VOI3221</td>
-                    <td class="hora">13:34:00</td>
-                    <td class="sala">C</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Cancun</td>
-                    <td class="destino">VIV2027</td>
-                    <td class="hora">14:35:00</td>
-                    <td class="sala">C</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Tijuana</td>
-                    <td class="destino">VOI3223</td>
-                    <td class="hora">17:45:00</td>
-                    <td class="sala">B</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Guadalajara</td>
-                    <td class="destino">VOI1397</td>
-                    <td class="hora">20:18:00</td>
-                    <td class="sala">B</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Tijuana</td>
-                    <td class="destino">VIV5117</td>
-                    <td class="hora">21:25:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">Monterrey</td>
-                    <td class="destino">VIV4009</td>
-                    <td class="hora">23:00:00</td>
-                    <td class="sala">A</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">RON</td>
-                    <td class="destino">VOIRON</td>
-                    <td class="hora">RON</td>
-                    <td class="sala">B</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-                <tr>
-                    <td class="vuelo">RON</td>
-                    <td class="destino">VOIRON</td>
-                    <td class="hora">RON</td>
-                    <td class="sala">B</td>
-                    <td class="estatus estatus-a-tiempo">A tiempo</td>
-                </tr>
-        
-            </tbody>
-        </table>
-        <script>
-            function updateClock() {
-                const now = new Date();
-                document.getElementById('liveClock').textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
-            }
-            setInterval(updateClock, 1000); updateClock();
-        </script>
-    </body>
-    </html>
-    
+        /* Estilo de fila en estado crítico (+/- 5 minutos) */
+        .resaltado { background-color: #b45309 !important; }
+        .resaltado td { color: #ffffff !important; } 
+        .resaltado td:first-child { color: #ffffff !important; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">✈️ FIDS - OPERACIONES</div>
+        <div class="clock">Última Actualización: 2026-07-03 12:13:26</div>
+    </div>
+    <div class="container">
+        <div class="panel">
+            <h2>Llegadas / Arrivals</h2>
+            <table>
+                <tr><th>Origen</th><th>Aerolínea</th><th>Vuelo</th><th>Hora</th><th>Estatus</th><th>Est.</th></tr></table></div><div class="panel"><h2>Salidas / Departures</h2><table>
+                <tr><th>Destino</th><th>Aerolínea</th><th>Vuelo</th><th>Hora</th><th>Puerta</th><th>Estatus</th></tr></table></div></div></body></html>
