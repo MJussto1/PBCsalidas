@@ -5,9 +5,50 @@
     <title>FIDS - SALIDAS</title>
     <style>
         body { background-color: #000000; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 30px; overflow: hidden; }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 5px solid #FFB300; padding-bottom: 15px; margin-bottom: 25px; }
-        .header h1 { margin: 0; color: #FFB300; font-size: 3rem; text-transform: uppercase; font-weight: 800; }
-        .clock { color: #FFFFFF; font-size: 2rem; font-weight: bold; }
+        
+        /* DISEÑO DE CABECERA CON COMPORTAMIENTO FLEXBOX */
+        .header { 
+            border-bottom: 5px solid #FFB300; 
+            padding-bottom: 15px; 
+            margin-bottom: 25px; 
+        }
+        
+        .top-airport-title { 
+            font-size: 2.8rem; 
+            font-weight: 900; 
+            color: #FFFFFF; 
+            text-align: center; 
+            text-transform: uppercase; 
+            margin-bottom: 15px; 
+            letter-spacing: 2px; 
+        }
+        
+        .header-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+        }
+        
+        .logos-izquierda { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        
+        .bloque-derecho { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        
+        /* AJUSTE DE IMÁGENES DE CABECERA */
+        .logo-top-aip { max-height: 90px; width: auto; } 
+        .logo-top-gmm { max-height: 90px; width: auto; border-radius: 4px; } 
+        
+        .header h1 { margin: 0; color: #FFB300; font-size: 2.8rem; text-transform: uppercase; font-weight: 800; }
+        .clock { color: #FFFFFF; font-size: 3rem; font-weight: bold; }
+        
         .fids-section { width: 100%; }
         .fids-section h2 { font-size: 2.2rem; margin-top: 0; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #2C2C2E; padding-bottom: 5px; }
         table { width: 100%; border-collapse: collapse; font-size: 2.2rem; font-weight: bold; }
@@ -20,6 +61,7 @@
         .estatus { text-transform: uppercase; }
         .estatus-a-tiempo { color: #00FF00; }
         .estatus-demorado { color: #FF3B30; }
+        .logo-aerolinea { max-height: 35px; width: auto; display: block; }
         .resaltado { background-color: #b45309 !important; animation: blink 2s infinite; }
         .resaltado td, .resaltado .vuelo { color: #ffffff !important; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
@@ -27,8 +69,20 @@
 </head>
 <body>
     <div class="header">
-        <h1>Información de Vuelos / Flight Information</h1>
-        <div class="clock" id="liveClock">00:00</div>
+        <div class="top-airport-title">AEROPUERTO INTERNACIONAL DE PUEBLA</div>
+        <div class="header-row">
+            
+            <div class="logos-izquierda">
+                <img src="recursos/logoAIP.png" alt="Logo AIP" class="logo-top-aip">
+                <h1>Salidas / Departures</h1>
+            </div>
+            
+            <div class="bloque-derecho">
+                <img src="recursos/LogoGMM.jpg" alt="Logo GMM" class="logo-top-gmm">
+                <div class="clock" id="liveClock">00:00</div>
+            </div>
+            
+        </div>
     </div>
     <div class="fids-section">
         <h2 style="color: #4ade80;">Salidas / Departures</h2>
@@ -93,7 +147,6 @@
         }
         setInterval(updateClock, 1000); updateClock();
         
-        // Evitar el caché recargando con un parámetro único cada 15 segundos
         setTimeout(function() {
             const url = new URL(window.location.href);
             url.searchParams.set('t', new Date().getTime());
