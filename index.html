@@ -2,23 +2,47 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIDS - SALIDAS</title>
     <style>
-        body { background-color: #000000; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 30px; overflow: hidden; }
+        /* CONFIGURACIÓN BASE RESPONSIVA REFORZADA */
+        html, body { 
+            background-color: #000000; 
+            color: #FFFFFF; 
+            font-family: 'Segoe UI', -apple-system, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden; 
+            box-sizing: border-box;
+        }
         
+        /* CONTENEDOR FLEXIBILE GLOBAL */
+        .fids-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            padding: 2vh 2vw;
+            box-sizing: border-box;
+        }
+        
+        /* ENCABEZADO PROPORCIONAL AL ALTO */
         .header { 
-            border-bottom: 5px solid #FFB300; 
-            padding-bottom: 15px; 
-            margin-bottom: 25px; 
+            border-bottom: 0.5vh solid #FFB300; 
+            padding-bottom: 1vh; 
+            margin-bottom: 1.5vh; 
+            flex-shrink: 0;
         }
         
         .top-airport-title { 
-            font-size: 2.8rem; 
+            font-size: 2.4vh; 
             font-weight: 900; 
             color: #FFFFFF; 
             text-align: center; 
             text-transform: uppercase; 
-            margin-bottom: 15px; 
+            margin: 0 0 1vh 0; 
             letter-spacing: 2px; 
         }
         
@@ -32,110 +56,151 @@
         .logos-izquierda { 
             display: flex; 
             align-items: center; 
-            gap: 20px; 
+            gap: 1.5vw; 
         }
         
         .bloque-derecho { 
             display: flex; 
             align-items: center; 
-            gap: 20px; 
+            gap: 1.5vw; 
         }
         
-        .logo-top-aip { max-height: 150px; width: auto; } 
-        .logo-top-gmm { max-height: 150px; width: auto; border-radius: 4px; } 
+        .logo-top-aip { height: 8vh; width: auto; display: block; } 
+        .logo-top-gmm { height: 8vh; width: auto; display: block; border-radius: 4px; } 
         
-        .header h1 { margin: 0; color: #FFB300; font-size: 2.8rem; text-transform: uppercase; font-weight: 800; }
-        .clock { color: #FFFFFF; font-size: 3rem; font-weight: bold; }
+        .header h1 { margin: 0; color: #FFB300; font-size: 3.5vh; text-transform: uppercase; font-weight: 800; }
+        .clock { color: #FFFFFF; font-size: 3.8vh; font-weight: bold; font-variant-numeric: tabular-nums; }
         
-        .fids-section { width: 100%; }
-        table { width: 100%; border-collapse: collapse; font-size: 2.2rem; font-weight: bold; }
-        th { text-align: left; color: #8E8E93; border-bottom: 3px solid #2C2C2E; padding: 12px; font-size: 1.6rem; text-transform: uppercase; }
-        td { padding: 18px 12px; border-bottom: 1px solid #1C1C1E; vertical-align: middle; }
+        /* TABLA COMPLETAMENTE ADAPTABLE */
+        .fids-section { 
+            width: 100%; 
+            flex-grow: 1;
+            overflow: hidden;
+        }
+        
+        table { 
+            width: 100%; 
+            height: 100%;
+            border-collapse: collapse; 
+            table-layout: fixed;
+        }
+        
+        th { 
+            text-align: left; 
+            color: #8E8E93; 
+            border-bottom: 0.4vh solid #2C2C2E; 
+            padding: 0.5vh 1vw; 
+            font-size: 1.8vh; 
+            text-transform: uppercase; 
+        }
+        
+        td { 
+            padding: 0.8vh 1vw; 
+            border-bottom: 1px solid #1C1C1E; 
+            vertical-align: middle; 
+            font-size: 2.4vh; 
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* DISEÑO DE COLUMNAS */
         .vuelo { color: #FFB300; }
         .destino { color: #FFFFFF; }
         .hora { color: #FFFFFF; }
         .sala { color: #FFFFFF; }
+        .texto-aerolinea { color: #FFFFFF; font-size: 2.2vh; }
+        
         .estatus { text-transform: uppercase; }
         .estatus-a-tiempo { color: #00FF00; }
         .estatus-demorado { color: #FF3B30; }
-        .logo-aerolinea { max-height: 35px; width: auto; display: block; }
+        
+        .logo-aerolinea { 
+            height: 3vh; 
+            max-width: 100%;
+            object-fit: contain;
+            display: block; 
+        }
+        
+        /* FILA RESALTADA DE ALERTA */
         .resaltado { background-color: #b45309 !important; animation: blink 2s infinite; }
         .resaltado td, .resaltado .vuelo { color: #ffffff !important; }
+        
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="top-airport-title">AEROPUERTO INTERNACIONAL DE PUEBLA</div>
-        <div class="header-row">
-            
-            <div class="logos-izquierda">
-                <img src="recursos/logoAIPSF.png" alt="Logo AIP" class="logo-top-aip">
-                <h1>Salidas / Departures</h1>
+    <div class="fids-container">
+        <div class="header">
+            <div class="top-airport-title">AEROPUERTO INTERNACIONAL DE PUEBLA</div>
+            <div class="header-row">
+                <div class="logos-izquierda">
+                    <img src="recursos/logoAIPSF.png" alt="Logo AIP" class="logo-top-aip">
+                    <h1>Salidas / Departures</h1>
+                </div>
+                <div class="bloque-derecho">
+                    <img src="recursos/LogoGMMSF.png" alt="Logo GMM" class="logo-top-gmm">
+                    <div class="clock" id="liveClock">00:00</div>
+                </div>
             </div>
-            
-            <div class="bloque-derecho">
-                <img src="recursos/LogoGMMSF.png" alt="Logo GMM" class="logo-top-gmm">
-                <div class="clock" id="liveClock">00:00</div>
-            </div>
-            
         </div>
-    </div>
-    <div class="fids-section">
-        <table>
-            <thead><tr><th>Destino</th><th>Aerolínea</th><th>Vuelo</th><th>Hora</th><th>Puerta</th><th>Estatus</th></tr></thead>
-            <tbody>
+        <div class="fids-section">
+            <table>
+                <thead><tr><th>Destino</th><th>Aerolínea</th><th>Vuelo</th><th>Hora</th><th>Puerta</th><th>Estatus</th></tr></thead>
+                <tbody>
                 <tr class="">
-                    <td class="vuelo">TIJ</td>
-                    <td><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea" style="max-height: 140px; width: auto;"></td>
-                    <td class="destino">3223</td>
-                    <td class="hora">17:45:00</td>
-                    <td class="sala">1</td>
-                    <td class="estatus estatus-a-tiempo">A TIEMPO</td>
+                    <td class="vuelo" style="width: 25%;">TIJ</td>
+                    <td style="width: 20%;"><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea"></td>
+                    <td class="destino" style="width: 15%;">3223</td>
+                    <td class="hora" style="width: 15%;">17:45:00</td>
+                    <td class="sala" style="width: 10%;">1</td>
+                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
                 </tr>
                 <tr class="">
-                    <td class="vuelo">BJX</td>
-                    <td><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea" style="max-height: 140px; width: auto;"></td>
-                    <td class="destino">604</td>
-                    <td class="hora">19:00:00</td>
-                    <td class="sala">3</td>
-                    <td class="estatus estatus-a-tiempo">A TIEMPO</td>
+                    <td class="vuelo" style="width: 25%;">BJX</td>
+                    <td style="width: 20%;"><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea"></td>
+                    <td class="destino" style="width: 15%;">604</td>
+                    <td class="hora" style="width: 15%;">19:00:00</td>
+                    <td class="sala" style="width: 10%;">3</td>
+                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
                 </tr>
                 <tr class="">
-                    <td class="vuelo">GDL</td>
-                    <td><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea" style="max-height: 140px; width: auto;"></td>
-                    <td class="destino">1397</td>
-                    <td class="hora">20:18:00</td>
-                    <td class="sala">4</td>
-                    <td class="estatus estatus-a-tiempo">A TIEMPO</td>
+                    <td class="vuelo" style="width: 25%;">GDL</td>
+                    <td style="width: 20%;"><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea"></td>
+                    <td class="destino" style="width: 15%;">1397</td>
+                    <td class="hora" style="width: 15%;">20:18:00</td>
+                    <td class="sala" style="width: 10%;">4</td>
+                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
                 </tr>
                 <tr class="">
-                    <td class="vuelo">TIJ</td>
-                    <td><img src="recursos/VI.png" alt="Viva" class="logo-aerolinea" style="max-height: 50px; width: auto;"></td>
-                    <td class="destino">5117</td>
-                    <td class="hora">21:35:00</td>
-                    <td class="sala">5</td>
-                    <td class="estatus estatus-a-tiempo">A TIEMPO</td>
+                    <td class="vuelo" style="width: 25%;">TIJ</td>
+                    <td style="width: 20%;"><img src="recursos/VI.png" alt="Viva" class="logo-aerolinea" style="height: 3.5vh; max-height: none;"></td>
+                    <td class="destino" style="width: 15%;">5117</td>
+                    <td class="hora" style="width: 15%;">21:35:00</td>
+                    <td class="sala" style="width: 10%;">5</td>
+                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
                 </tr>
                 <tr class="">
-                    <td class="vuelo">GDL</td>
-                    <td><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea" style="max-height: 140px; width: auto;"></td>
-                    <td class="destino">3245</td>
-                    <td class="hora">21:50:00</td>
-                    <td class="sala">0</td>
-                    <td class="estatus estatus-a-tiempo">A TIEMPO</td>
+                    <td class="vuelo" style="width: 25%;">GDL</td>
+                    <td style="width: 20%;"><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea"></td>
+                    <td class="destino" style="width: 15%;">3245</td>
+                    <td class="hora" style="width: 15%;">21:50:00</td>
+                    <td class="sala" style="width: 10%;">0</td>
+                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
                 </tr>
                 <tr class="">
-                    <td class="vuelo">MTY</td>
-                    <td><img src="recursos/VI.png" alt="Viva" class="logo-aerolinea" style="max-height: 50px; width: auto;"></td>
-                    <td class="destino">4009</td>
-                    <td class="hora">22:55:00</td>
-                    <td class="sala">1</td>
-                    <td class="estatus estatus-a-tiempo">A TIEMPO</td>
+                    <td class="vuelo" style="width: 25%;">MTY</td>
+                    <td style="width: 20%;"><img src="recursos/VI.png" alt="Viva" class="logo-aerolinea" style="height: 3.5vh; max-height: none;"></td>
+                    <td class="destino" style="width: 15%;">4009</td>
+                    <td class="hora" style="width: 15%;">22:55:00</td>
+                    <td class="sala" style="width: 10%;">1</td>
+                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>
     <script>
         function updateClock() {
             const now = new Date();
