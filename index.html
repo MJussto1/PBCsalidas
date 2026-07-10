@@ -173,22 +173,6 @@
                 <table class="body-table" id="fidsTable">
                     <tbody>
                 <tr class="">
-                    <td class="vuelo" style="width: 25%;">CUN</td>
-                    <td style="width: 20%;"><img src="recursos/VI.png" alt="Viva" class="logo-aerolinea" style="height: 5.5vh !important;"></td>
-                    <td class="destino" style="width: 15%;">2025</td>
-                    <td class="hora" style="width: 15%;">09:45:00</td>
-                    <td class="sala" style="width: 10%;">2</td>
-                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
-                </tr>
-                <tr class="">
-                    <td class="vuelo" style="width: 25%;">HUX</td>
-                    <td style="width: 20%;"><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea"></td>
-                    <td class="destino" style="width: 15%;">612</td>
-                    <td class="hora" style="width: 15%;">09:55:00</td>
-                    <td class="sala" style="width: 10%;">3</td>
-                    <td class="estatus estatus-a-tiempo" style="width: 15%;">A TIEMPO</td>
-                </tr>
-                <tr class="">
                     <td class="vuelo" style="width: 25%;">LAX</td>
                     <td style="width: 20%;"><img src="recursos/vo.png" alt="Volaris" class="logo-aerolinea"></td>
                     <td class="destino" style="width: 15%;">1783</td>
@@ -317,16 +301,16 @@
                 table.style.top = '-' + (currentIndex * rowHeight) + 'px';
             }
         }
-        
+        // Ejecuta el movimiento de pantalla cada 7 segundos para dar tiempo de lectura cómodo
         if (totalRows > visibleRowsCount) {
-            setInterval(autoScroll, 7000);
+            setInterval(autoScroll, 15000);
         }
         
         setTimeout(function() {
             const url = new URL(window.location.href);
             url.searchParams.set('t', new Date().getTime());
             window.location.href = url.toString();
-        }, 45000);
+        }, 70000);
     </script>
 </body>
 </html>
